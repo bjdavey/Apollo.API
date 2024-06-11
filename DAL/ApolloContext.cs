@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Apollo.API.Models.DB;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
-namespace Apollo.API.scaffold_tmp;
+namespace Apollo.API.DAL;
 
-public partial class ApolloDevContext : DbContext
+public partial class ApolloContext : DbContext
 {
-    public ApolloDevContext()
+    public ApolloContext()
     {
     }
 
-    public ApolloDevContext(DbContextOptions<ApolloDevContext> options)
+    public ApolloContext(DbContextOptions<ApolloContext> options)
         : base(options)
     {
     }
@@ -27,10 +25,6 @@ public partial class ApolloDevContext : DbContext
     public virtual DbSet<Vehicle> Vehicles { get; set; }
 
     public virtual DbSet<VehicleRestriction> VehicleRestrictions { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=185.222.241.148;port=4306;user=apollo;password=urnJJ5m#xnG#24if%asUoH;database=apollo_dev", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.37-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

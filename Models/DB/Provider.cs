@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using API.Helpers;
 
-namespace Apollo.API.scaffold_tmp;
+namespace Apollo.API.Models.DB;
 
-public partial class Provider
+public partial class Provider : EntityBase
 {
-    public int Id { get; set; }
-
     public int? UserId { get; set; }
 
     public string? ContractNo { get; set; }
@@ -18,14 +15,6 @@ public partial class Provider
     public string? Cities { get; set; }
 
     public DateTime? StartedAt { get; set; }
-
-    public int? CreatedBy { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    public bool? IsDeleted { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 

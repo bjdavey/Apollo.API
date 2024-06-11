@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using API.Helpers;
 
-namespace Apollo.API.scaffold_tmp;
+namespace Apollo.API.Models.DB;
 
-public partial class User
+public partial class User : EntityBase
 {
-    public int Id { get; set; }
-
     public string Email { get; set; } = null!;
 
     public string? Phone { get; set; }
@@ -22,14 +19,6 @@ public partial class User
     public string? Roles { get; set; }
 
     public string? Details { get; set; }
-
-    public int? CreatedBy { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    public bool? IsDeleted { get; set; }
 
     public virtual Customer? Customer { get; set; }
 

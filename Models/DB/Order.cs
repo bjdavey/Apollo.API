@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using API.Helpers;
 
-namespace Apollo.API.scaffold_tmp;
+namespace Apollo.API.Models.DB;
 
-public partial class Order
+public partial class Order : EntityBase
 {
-    public int Id { get; set; }
-
     public int? ProviderId { get; set; }
 
     public int? CustomerId { get; set; }
@@ -28,14 +25,6 @@ public partial class Order
     public string? Location { get; set; }
 
     public string? Details { get; set; }
-
-    public int? CreatedBy { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    public bool? IsDeleted { get; set; }
 
     public virtual Customer? Customer { get; set; }
 
