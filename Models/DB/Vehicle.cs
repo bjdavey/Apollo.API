@@ -1,4 +1,5 @@
 ﻿using API.Helpers;
+using API.Shared;
 
 namespace Apollo.API.Models.DB;
 
@@ -16,15 +17,15 @@ public partial class Vehicle : EntityBase
 
     public string? Color { get; set; }
 
-    public sbyte? Type { get; set; }
+    public VEHICLE_TYPE Type { get; set; }
 
     public string? Picture { get; set; }
 
-    public sbyte? PriceModel { get; set; }
+    public PRICE_MODEL PriceModel { get; set; }
 
     public decimal? PricePerModel { get; set; }
 
-    public sbyte? Status { get; set; }
+    public VEHICLE_STATUS Status { get; set; }
 
     public string? Location { get; set; }
 

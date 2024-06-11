@@ -1,4 +1,5 @@
 ﻿using API.Helpers;
+using API.Shared;
 
 namespace Apollo.API.Models.DB;
 
@@ -12,9 +13,9 @@ public partial class User : EntityBase
 
     public string? Name { get; set; }
 
-    public sbyte? Status { get; set; }
+    public USER_STATUS Status { get; set; }
 
-    public sbyte? Type { get; set; }
+    public USER_TYPE Type { get; set; }
 
     public string? Roles { get; set; }
 

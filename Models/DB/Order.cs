@@ -1,4 +1,5 @@
 ﻿using API.Helpers;
+using API.Shared;
 
 namespace Apollo.API.Models.DB;
 
@@ -14,13 +15,13 @@ public partial class Order : EntityBase
 
     public DateTime? EndAt { get; set; }
 
-    public sbyte? PriceModel { get; set; }
+    public PRICE_MODEL PriceModel { get; set; }
 
     public decimal? PricePerModel { get; set; }
 
     public decimal? TotalCost { get; set; }
 
-    public sbyte? Status { get; set; }
+    public ORDER_STATUS Status { get; set; }
 
     public string? Location { get; set; }
 
