@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Apollo.API;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Headers;
@@ -12,8 +13,8 @@ namespace API.Helpers
     {
         public static string CreateToken(List<Claim> claims, DateTime expire)
         {
-            //var IssuerSigningKey = Startup.AppSettings.GetValue<string>("IssuerSigningKey");
-            var IssuerSigningKey = "HZ@NZGrie45$Ka7rrq";
+            var IssuerSigningKey = Program.AppSettings.GetValue<string>("IssuerSigningKey");
+            //var IssuerSigningKey = "*******";
             var token = new JwtSecurityToken
             (
                 claims: claims,
