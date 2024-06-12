@@ -1,7 +1,6 @@
 ﻿using API.Helpers;
 using Newtonsoft.Json;
 using System.Net;
-using System.Net.Http.Headers;
 
 namespace Apollo.API.Services
 {
@@ -42,26 +41,48 @@ namespace Apollo.API.Services
 
         public static async Task<int?> CreateDevice(string name, string uniqueId)
         {
-            var auth = new AuthenticationHeaderValue("Basic", BasicAuth);
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{BaseUrl}/devices");
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Authorization", "Basic amJqZGF2ZXlAaG90bWFpbC5jb206MDAwMA==");
             var content = Utilities.JsonContent(new
             {
                 name = name,
                 uniqueId = uniqueId
             });
-            var response = await Utilities.PostRequest(BaseUrl, $"/devices", content, auth);
+            request.Content = content;
+            var response = await client.SendAsync(request);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
                 var res = JsonConvert.DeserializeObject<DeviceResponse>(jsonString);
                 return res?.id;
             }
+
+            //var auth = new AuthenticationHeaderValue("Basic", BasicAuth);
+            //var content = Utilities.JsonContent(new
+            //{
+            //    name = name,
+            //    uniqueId = uniqueId
+            //});
+            //var response = await Utilities.PostRequest(BaseUrl, $"/devices", content, auth);
+            //if (response.StatusCode == HttpStatusCode.OK)
+            //{
+            //    var jsonString = await response.Content.ReadAsStringAsync();
+            //    var res = JsonConvert.DeserializeObject<DeviceResponse>(jsonString);
+            //    return res?.id;
+            //}
             return null;
         }
 
         public static async Task<Device?> FetchDevice(string uniqueId)
         {
-            var auth = new AuthenticationHeaderValue("Basic", BasicAuth);
-            var getDevices = await Utilities.GetRequest(BaseUrl, $"/devices?uniqueId={uniqueId}", auth);
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUrl}/devices?uniqueId={uniqueId}");
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Authorization", "Basic amJqZGF2ZXlAaG90bWFpbC5jb206MDAwMA==");
+            var getDevices = await client.SendAsync(request);
+
             if (getDevices.StatusCode == HttpStatusCode.OK)
             {
                 var getDevicesJsonString = await getDevices.Content.ReadAsStringAsync();
@@ -77,9 +98,14 @@ namespace Apollo.API.Services
                         status = device?.status
                     };
                     var positionId = device?.positionId;
-                    if (positionId != null)
+                    if (positionId != null && positionId != 0)
                     {
-                        var getPositions = await Utilities.GetRequest(BaseUrl, $"/positions?id={positionId}", auth);
+
+                        var client2 = new HttpClient();
+                        var request2 = new HttpRequestMessage(HttpMethod.Get, $"{BaseUrl}/positions?id={positionId}");
+                        request2.Headers.Add("Accept", "application/json");
+                        request2.Headers.Add("Authorization", "Basic amJqZGF2ZXlAaG90bWFpbC5jb206MDAwMA==");
+                        var getPositions = await client2.SendAsync(request2);
                         if (getPositions.StatusCode == HttpStatusCode.OK)
                         {
                             var getPositionsJsonString = await getPositions.Content.ReadAsStringAsync();
@@ -89,6 +115,7 @@ namespace Apollo.API.Services
                             response.altitude = positions?[0]?.altitude;
                         }
                     }
+                    return response;
                 }
             }
             return null;

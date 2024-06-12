@@ -31,6 +31,7 @@ namespace Qi.CDC.API.Controllers
         [HttpPost]
         public async Task<IActionResult> GetTokenByPassword([FromForm] string email, [FromForm] string password)
         {
+            var tmp = BCrypt.Net.BCrypt.HashPassword(password);
             if (!ModelState.IsValid)
             {
                 return StatusCode(StatusCodes.Status406NotAcceptable);

@@ -29,6 +29,10 @@ public partial class Vehicle : EntityBase
 
     public string? Location { get; set; }
 
+    public string? DeviceUnique { get; set; }
+
+    public int? DeviceId { get; set; }
+
     public string? Details { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

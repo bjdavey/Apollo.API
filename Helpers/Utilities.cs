@@ -59,6 +59,7 @@ namespace API.Helpers
         {
             using (var httpClient = new HttpClient())
             {
+                httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
                 httpClient.BaseAddress = new Uri(baseAddress);
                 if (authenticationHeaderValue != null)
                     httpClient.DefaultRequestHeaders.Authorization = authenticationHeaderValue;

@@ -253,6 +253,10 @@ public partial class ApolloContext : DbContext
             entity.Property(e => e.Details)
                 .HasColumnType("json")
                 .HasColumnName("details");
+            entity.Property(e => e.DeviceId).HasColumnName("device_id");
+            entity.Property(e => e.DeviceUnique)
+                .HasMaxLength(255)
+                .HasColumnName("device_unique");
             entity.Property(e => e.IsDeleted)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("is_deleted");
