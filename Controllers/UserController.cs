@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace Qi.CDC.API.Controllers
+namespace API.Controllers
 {
     //[Authorize(Policy = "SysAdmin")]
     //[Authorize(Roles = Roles.Users)]

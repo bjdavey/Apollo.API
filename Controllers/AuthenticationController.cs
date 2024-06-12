@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace Qi.CDC.API.Controllers
+namespace API.Controllers
 {
     [AllowAnonymous]
     [Route("api/[controller]/[action]")]
