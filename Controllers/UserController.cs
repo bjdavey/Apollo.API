@@ -1,4 +1,5 @@
 ﻿using API.Helpers;
+using API.Shared;
 using Apollo.API.DAL;
 using Apollo.API.Models.DB;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,7 @@ namespace Apollo.API.Controllers
         {
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> CheckEmailUsed([FromForm] int? id, [FromForm] string email)
         {
@@ -35,7 +36,7 @@ namespace Apollo.API.Controllers
             return Ok(result);
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public override async Task<IActionResult> Add([FromForm] string values)
         {
@@ -52,7 +53,10 @@ namespace Apollo.API.Controllers
             {
                 throw new Exception("Password is required");
             }
-
+            if (item.Status == 0)
+            {
+                item.Status = USER_STATUS.active;
+            }
             var user = await Repository.Add(item);
 
             return Ok(user);

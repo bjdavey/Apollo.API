@@ -45,10 +45,10 @@ namespace API.Helpers
         [HttpGet]
         public virtual async Task<IActionResult> Get(DataSourceLoadOptions loadOptions)
         {
-            if (loadOptions.Take == 0 || loadOptions.Take > 100)
-            {
-                throw new Exception("Can not fetch more than 100 items");
-            }
+            //if (loadOptions.Take == 0 || loadOptions.Take > 100)
+            //{
+            //    throw new Exception("Can not fetch more than 100 items");
+            //}
             var source = Repository.Query(includeCreatedBy: true);
             return Ok(DataSourceLoader.Load(source, loadOptions));
         }
