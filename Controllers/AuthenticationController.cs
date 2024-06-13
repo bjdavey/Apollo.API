@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace API.Controllers
+namespace Apollo.API.Controllers
 {
     [AllowAnonymous]
     [Route("api/[controller]/[action]")]

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace API.Controllers
+namespace Apollo.API.Controllers
 {
     //[Authorize(Policy = "SysAdmin")]
     //[Authorize(Roles = Roles.Users)]

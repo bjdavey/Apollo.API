@@ -55,6 +55,22 @@ namespace API.Helpers
             return valid;
         }
 
+        public static async Task<HttpResponseMessage> SendRequest(HttpMethod httpMethod, string url, HttpContent? httpContent = null, string? authorization = null, string? accept = null)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var request = new HttpRequestMessage(httpMethod, url);
+                if (authorization != null)
+                    request.Headers.Add("Authorization", authorization);
+                if (accept != null)
+                    request.Headers.Add("Accept", accept);
+                if (httpContent != null)
+                    request.Content = httpContent;
+                var response = await httpClient.SendAsync(request);
+                return response;
+            }
+        }
+
         public static async Task<HttpResponseMessage> GetRequest(string baseAddress, string requestUrl, AuthenticationHeaderValue authenticationHeaderValue = null)
         {
             using (var httpClient = new HttpClient())
