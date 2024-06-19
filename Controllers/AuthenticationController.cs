@@ -77,6 +77,7 @@ namespace Apollo.API.Controllers
                         {
                             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                             new Claim("Id", user.Id.ToString()),
+                            new Claim("Type", user.Type.ToString()),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                         };
             if (!String.IsNullOrEmpty(user.Roles))
@@ -91,6 +92,7 @@ namespace Apollo.API.Controllers
                 Email = user.Email,
                 Name = user.Name,
                 Roles = user.Roles,
+                Type = user.Type,
                 Token = Utilities.CreateToken(claims, DateTime.UtcNow.AddDays(1))
             });
         }

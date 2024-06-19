@@ -25,8 +25,8 @@
     {
         created = 1,
         running = 2,
-        ended = 2,
-        paid = 3,
+        ended = 3,
+        paid = 4,
     }
 
     public enum VEHICLE_TYPE : int
