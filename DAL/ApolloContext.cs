@@ -98,6 +98,9 @@ public partial class ApolloContext : DbContext
             entity.Property(e => e.Details)
                 .HasColumnType("json")
                 .HasColumnName("details");
+            entity.Property(e => e.Distance)
+                .HasPrecision(15, 2)
+                .HasColumnName("distance");
             entity.Property(e => e.EndAt)
                 .HasColumnType("timestamp")
                 .HasColumnName("end_at");

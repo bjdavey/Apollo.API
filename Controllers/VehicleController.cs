@@ -137,6 +137,12 @@ namespace Apollo.API.Controllers
             }
 
             vehicle.DeviceId = device.Id;
+
+            var provider = await Repository.DbContext.Providers.FirstOrDefaultAsync(x => x.UserId == GetUserID());
+            if (provider == null)
+                return BadRequest("Provider not found");
+            vehicle.ProviderId = provider.Id;
+
             vehicle.CreatedBy = GetUserID();
             if (file != null)
             {
