@@ -39,7 +39,7 @@ namespace Apollo.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetDetails([FromRoute] int id)
+        public async Task<IActionResult> GetDetails([FromRoute] int id = -1)
         {
             var vehicle = await Repository.Query(true).Include(x => x.VehicleRestriction).FirstOrDefaultAsync(x => x.Id == id);
             var device = await Traccar.FetchDevice(vehicle.DeviceUnique);
@@ -48,6 +48,19 @@ namespace Apollo.API.Controllers
                 vehicle,
                 device
             });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetVehicles()
+        {
+            var vehicles = Repository.Query(includeCreatedBy: true).Include(x => x.VehicleRestriction);
+            var res = from vehicle in vehicles
+                      select new
+                      {
+                          vehicle,
+                          device = Traccar.FetchDevice(vehicle.DeviceUnique).Result
+                      };
+            return Ok(res);
         }
 
 
