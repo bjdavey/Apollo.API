@@ -2,6 +2,10 @@
 
 Description: Car renting platform. Providers can register vehicles of various types. Customer can search for available vehicles according to their current location and booking.
 
+<img width="3270" height="2343" alt="design" src="https://github.com/user-attachments/assets/9ac7ed1b-e2e0-4567-be71-137748223b23" />
+<img height="2163" alt="flow" src="https://github.com/user-attachments/assets/1b1e6cbb-4d6f-4f53-b7bc-c299ae1455f8" />
+<img height="2544" alt="data" src="https://github.com/user-attachments/assets/cbc137fa-9b46-4f17-80dc-0709a173c895" />
+
 Team 01
 Students:
 1) Boluwatife Adebola Alawode, 7219092, boluwatife.alawode001@stud.fh-dortmund.de
